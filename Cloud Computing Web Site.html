@@ -1,4 +1,12 @@
 
+
+
+
+
+
+
+
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -69,6 +77,10 @@ th{color:var(--muted);font-weight:700}
 .faq-item.open .faq-a{max-height:400px;padding-top:8px}
 footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);display:flex;justify-content:space-between;align-items:center}
 
+/* المحاضرات الجديدة مخفية افتراضياً */
+section.lecture{display:none; margin-top:20px; padding:18px; background:var(--card); border-radius:12px;}
+section.lecture.active{display:block;}
+
 /* responsive */
 @media (max-width:980px){
   .hero{grid-template-columns:1fr}
@@ -102,8 +114,8 @@ footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradien
     <div class="dropdown">
       <button class="dropbtn">محاضرات ▾</button>
       <div class="dropdown-content">
-        <a href="#git">20 أمر من أوامر Git</a>
-        <a href="#lecture2">المحاضرة الثانية</a>
+        <a href="#" data-section="git">20 أمر من أوامر Git</a>
+        <a href="#" data-section="lecture2">إضافة مشاركين</a>
       </div>
     </div>
 
@@ -111,7 +123,6 @@ footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradien
   </nav>
 </header>
 
-<!-- محتوى Hero/Grid/Original Sections -->
 <section class="hero">
   <div>
     <h1>مقدمة احترافية في الحوسبة السحابية</h1>
@@ -148,7 +159,6 @@ footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradien
 
 <div class="grid">
 <main>
-  <!-- الأقسام الأصلية -->
   <section class="card" id="courses">
     <h3>مخطط الدورات</h3>
     <p class="meta">سلسلة مرتبة من المبتدئ إلى المتقدم مع أمثلة عملية</p>
@@ -189,7 +199,6 @@ footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradien
     <div class="faq-item"><div class="faq-q">هل السحابة آمنة؟ <span>+</span></div><div class="faq-a">نعم عند اتباع ممارسات الأمن: التشفير، التحكم بالوصول، مراقبة النشاط، وتحديث السياسات بشكل دوري.</div></div>
   </section>
 
-  <!-- أقسام المحاضرات الجديدة -->
   <section class="lecture" id="git">
     <h2>20 أمر من أوامر Git</h2>
     <ol>
@@ -217,8 +226,18 @@ footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradien
   </section>
 
   <section class="lecture" id="lecture2">
-    <h2>المحاضرة الثانية</h2>
-    <p>هنا محتوى المحاضرة الثانية يمكن كتابته مباشرة.</p>
+    <h2>إضافة مشاركين (Collaborators)</h2>
+    <p>لإضافة مشاركين إلى مستودعك على GitHub، اتبع الخطوات التالية:</p>
+    <ol>
+      <li>افتح مستودعك على GitHub.</li>
+      <li>اضغط على <strong>Settings</strong> أعلى الصفحة.</li>
+      <li>من القائمة الجانبية اختر <strong>Collaborators & teams</strong>.</li>
+      <li>في خانة البحث، اكتب اسم المستخدم أو البريد الإلكتروني للشخص الذي تريد إضافته.</li>
+      <li>اضغط على <strong>Add collaborator</strong> بجانب اسم المستخدم.</li>
+      <li>سينتظر GitHub قبول الدعوة من الشخص المضاف.</li>
+      <li>بمجرد قبول الدعوة، سيتمكن المشارك من الوصول إلى المستودع وفقًا للأذونات المحددة.</li>
+    </ol>
+    <p class="meta"></p>
   </section>
 </main>
 
@@ -236,19 +255,29 @@ footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradien
 
 <footer>
   <div>© جميع الحقوق محفوظة — CloudClass 2025</div>
-  <div style="color:var(--muted)">صمم لمشاريع التعلّم والشرح</div>
+  <div style="color:var(--muted)">عمل الطالبة شهد حسن بن اسحاق</div>
 </footer>
 </div>
 
 <script>
 // FAQ accordion
 document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-q').addEventListener('click', ()=>{
-    item.classList.toggle('open');
-  })
+  item.querySelector('.faq-q').addEventListener('click', ()=>{ item.classList.toggle('open'); });
 });
 document.querySelectorAll('.faq-q').forEach(q => q.setAttribute('tabindex', 0));
-document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('keypress', e=>{ if(e.key==='Enter') q.click(); }))
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('keypress', e=>{ if(e.key==='Enter') q.click(); }));
+
+// Switch between lecture sections with smooth scroll
+document.querySelectorAll('.dropdown-content a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const sectionId = link.getAttribute('data-section');
+    document.querySelectorAll('section.lecture').forEach(sec => sec.classList.remove('active'));
+    const target = document.getElementById(sectionId);
+    target.classList.add('active');
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
 </script>
 </body>
 </html>
