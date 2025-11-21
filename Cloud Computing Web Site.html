@@ -1,261 +1,254 @@
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>مقدمة في الحوسبة السحابية</title>
-  <meta name="description" content="موقع تعليمي احترافي عن الحوسبة السحابية — دورات، مفاهيم، مقارنة بين مزودي الخدمة، ومصطلحات مهمة.">
-  <style>
-    :root{
-      --bg:#0f1724; /* dark navy */
-      --card:#0b1220;
-      --accent1:#06b6d4; /* cyan */
-      --accent2:#7c3aed; /* purple */
-      --muted:#94a3b8;
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
-      --container:1100px;
-      --text:#e6eef8;
-      --success:#10b981;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;padding:0;
-      font-family: 'Segoe UI', Tahoma, system-ui, Arial;
-      background: linear-gradient(180deg,var(--bg) 0%, #07101a 100%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
-    .wrap{max-width:var(--container);margin:30px auto;padding:20px}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مقدمة في الحوسبة السحابية</title>
+<meta name="description" content="موقع تعليمي احترافي عن الحوسبة السحابية — دورات، مفاهيم، مقارنة بين مزودي الخدمة، ومصطلحات مهمة.">
+<style>
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --accent1:#06b6d4;
+  --accent2:#7c3aed;
+  --muted:#94a3b8;
+  --glass: rgba(255,255,255,0.03);
+  --radius:14px;
+  --container:1100px;
+  --text:#e6eef8;
+  --success:#10b981;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family: 'Segoe UI', Tahoma, system-ui, Arial;line-height:1.5;color:var(--text);background: linear-gradient(180deg,var(--bg) 0%, #07101a 100%);}
+.wrap{max-width:var(--container);margin:30px auto;padding:20px}
 
-    /* header */
-    header{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:16px;margin-bottom:28px;
-    }
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));
-      display:grid;place-items:center;font-weight:700;color:#012029;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,0.5)
-    }
-    nav{display:flex;gap:14px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
-    nav a:hover{color:var(--text);background:var(--glass)}
-    .cta{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:12px;color:#021018;text-decoration:none;font-weight:600}
+/* header */
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:grid;place-items:center;font-weight:700;color:#012029;font-size:18px}
+nav{display:flex;gap:14px;align-items:center;position:relative}
+nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
+nav a:hover{color:var(--text);background:var(--glass)}
+.cta{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:12px;color:#021018;text-decoration:none;font-weight:600}
+.dropdown{position:relative;display:inline-block}
+.dropbtn{background:none;border:none;color:var(--muted);cursor:pointer;padding:8px 12px;border-radius:10px;font-size:inherit}
+.dropdown-content{display:none;position:absolute;right:0;background:var(--card);min-width:180px;box-shadow:0 8px 16px rgba(0,0,0,0.2);z-index:1;border-radius:10px}
+.dropdown-content a{display:block;padding:8px 12px;color:var(--text);text-decoration:none}
+.dropdown-content a:hover{background:var(--glass)}
+.dropdown:hover .dropdown-content{display:block;}
 
-    /* hero */
-    .hero{
-      background: linear-gradient(90deg, rgba(124,58,237,0.06), rgba(6,182,212,0.03));
-      padding:28px;border-radius:var(--radius);display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:center
-    }
-    .hero h1{margin:0 0 8px;font-size:28px}
-    .hero p{margin:0;color:var(--muted)}
-    .features{display:flex;gap:12px;margin-top:18px}
-    .chip{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600}
-    .signup-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));padding:18px;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
-    .signup-card h3{margin:0 0 8px}
-    .input{width:100%;padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);margin-bottom:10px}
-    .btn-primary{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021018;font-weight:700;text-decoration:none}
+/* hero */
+.hero{background: linear-gradient(90deg, rgba(124,58,237,0.06), rgba(6,182,212,0.03));padding:28px;border-radius:var(--radius);display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:center}
+.hero h1{margin:0 0 8px;font-size:28px}
+.hero p{margin:0;color:var(--muted)}
+.features{display:flex;gap:12px;margin-top:18px}
+.chip{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600}
+.signup-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));padding:18px;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
+.signup-card h3{margin:0 0 8px}
+.input{width:100%;padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);margin-bottom:10px}
+.btn-primary{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021018;font-weight:700;text-decoration:none}
 
-    /* grid of sections */
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:20px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-    .course{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03)}
-    .course h4{margin:0 0 6px}
-    .meta{font-size:13px;color:var(--muted)}
+/* grid of sections */
+.grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:20px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.course{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03)}
+.course h4{margin:0 0 6px}
+.meta{font-size:13px;color:var(--muted)}
+aside .legend{display:flex;gap:10px;flex-direction:column}
+.stat{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{padding:10px;border-bottom:1px dashed rgba(255,255,255,0.03);text-align:right}
+th{color:var(--muted);font-weight:700}
+.glossary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.term{padding:12px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.02)}
+.faq-item{border-radius:10px;padding:10px;margin-bottom:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+.faq-q{display:flex;justify-content:space-between;cursor:pointer}
+.faq-a{max-height:0;overflow:hidden;transition:all .28s ease;padding-top:0}
+.faq-item.open .faq-a{max-height:400px;padding-top:8px}
+footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);display:flex;justify-content:space-between;align-items:center}
 
-    aside .legend{display:flex;gap:10px;flex-direction:column}
-    .stat{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-
-    /* comparison table */
-    table{width:100%;border-collapse:collapse;margin-top:12px}
-    th,td{padding:10px;border-bottom:1px dashed rgba(255,255,255,0.03);text-align:right}
-    th{color:var(--muted);font-weight:700}
-
-    /* glossary */
-    .glossary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-    .term{padding:12px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.02)}
-
-    /* faq */
-    .faq-item{border-radius:10px;padding:10px;margin-bottom:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-    .faq-q{display:flex;justify-content:space-between;cursor:pointer}
-    .faq-a{max-height:0;overflow:hidden;transition:all .28s ease;padding-top:0}
-    .faq-item.open .faq-a{max-height:400px;padding-top:8px}
-
-    /* footer */
-    footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);display:flex;justify-content:space-between;align-items:center}
-
-    /* responsive */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .wrap{padding:12px}
-    }
-    @media (max-width:600px){
-      .cards{grid-template-columns:1fr}
-      nav{display:none}
-    }
-  </style>
+/* responsive */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .wrap{padding:12px}
+}
+@media (max-width:600px){
+  .cards{grid-template-columns:1fr}
+  nav{display:none}
+}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">CC</div>
-        <div>
-          <div style="font-weight:700">CloudClass</div>
-          <div style="font-size:13px;color:var(--muted)">تعرف على الحوسبة السحابية بخطوات عملية</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#courses">الدورات</a>
-        <a href="#compare">مقارنة المزودين</a>
-        <a href="#glossary">مصطلحات</a>
-        <a href="#faq">أسئلة شائعة</a>
-        <a class="cta" href="#signup">ابدأ الآن</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div>
-        <h1>مقدمة احترافية في الحوسبة السحابية</h1>
-        <p>دورات مبسطة ومهنية تشرح الخدمات الأساسية: IaaS، PaaS، SaaS، الشبكات، الأمان، التخزين والحوكمة السحابية.</p>
-        <div class="features">
-          <div class="chip">مشاريع عملية</div>
-          <div class="chip">شروحات فيديو &amp; نصية</div>
-          <div class="chip">شهادات إتمام</div>
-        </div>
-
-        <div class="cards" style="margin-top:18px">
-          <div class="course">
-            <h4>أساسيات السحابة</h4>
-            <div class="meta">3 وحدات — مستوى مبتدئ</div>
-          </div>
-          <div class="course">
-            <h4>شبكات وVPC</h4>
-            <div class="meta">2 وحدات — مستوى وسط</div>
-          </div>
-          <div class="course">
-            <h4>أمان السحابة</h4>
-            <div class="meta">4 وحدات — مستوى متقدم</div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="signup-card" id="signup">
-        <h3>سجل لبداية سريعة</h3>
-        <p style="color:var(--muted);font-size:14px">اشترك لتصلك مواد مجانية ودليلك العملي.</p>
-        <input class="input" placeholder="البريد الإلكتروني" aria-label="email">
-        <a class="btn-primary" href="#">سجل الآن</a>
-      </aside>
-    </section>
-
-    <div class="grid">
-      <main>
-        <section class="card" id="courses">
-          <h3>مخطط الدورات</h3>
-          <p class="meta">سلسلة مرتبة من المبتدئ إلى المتقدم مع أمثلة عملية</p>
-          <div class="cards" style="margin-top:12px">
-            <div class="course">
-              <h4>Foundations</h4>
-              <div class="meta">مفاهيم، نماذج نشر، حالات استخدام</div>
-            </div>
-            <div class="course">
-              <h4>Compute &amp; Containers</h4>
-              <div class="meta">VMs، Docker، Kubernetes</div>
-            </div>
-            <div class="course">
-              <h4>Storage &amp; Databases</h4>
-              <div class="meta">S3، Blob، قواعد البيانات المدارَة</div>
-            </div>
-          </div>
-
-          <h4 style="margin-top:16px">مشروع عملي مقترح</h4>
-          <p class="meta">بناء تطبيق ويب بسيط يستضيفه على S3/Blob مع API على الحاويات (Containers) وقاعدة بيانات مدارة.</p>
-        </section>
-
-        <section class="card" id="compare">
-          <h3>مقارنة سريعة بين مزودي السحابة</h3>
-          <table>
-            <thead>
-              <tr><th>المزود</th><th>خدمات رئيسية</th><th>حالة الاستخدام</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>AWS</td><td>IaaS, Lambda, S3</td><td>شائع للتطبيقات واسعة النطاق</td></tr>
-              <tr><td>Azure</td><td>Active Directory, App Services</td><td>مناسب للمؤسسات المتكاملة مع مايكروسوفت</td></tr>
-              <tr><td>GCP</td><td>BigQuery, Compute Engine</td><td>قوي في تحليلات البيانات</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section class="card" id="glossary">
-          <h3>مصطلحات مهمة</h3>
-          <div class="glossary">
-            <div class="term"><strong>IaaS</strong><div class="meta">البنية التحتية كخدمة — آلات افتراضية، شبكات.</div></div>
-            <div class="term"><strong>PaaS</strong><div class="meta">المنصة كخدمة — بيئة لتشغيل التطبيقات دون إدارة البنية.</div></div>
-            <div class="term"><strong>SaaS</strong><div class="meta">البرمجيات كخدمة — برامج جاهزة عبر الإنترنت.</div></div>
-            <div class="term"><strong>VPC</strong><div class="meta">شبكة افتراضية خاصة—عزل الشبكة داخل السحابة.</div></div>
-          </div>
-        </section>
-
-        <section class="card" id="faq">
-          <h3>أسئلة شائعة</h3>
-          <div class="faq-item">
-            <div class="faq-q">ما الفرق بين IaaS وPaaS؟ <span>+</span></div>
-            <div class="faq-a">IaaS يوفر الخوادم والشبكات والبنية التحتية. PaaS يوفر بيئة تشغيل ويدير الطبقات الأدنى من البنية لك.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">هل السحابة آمنة؟ <span>+</span></div>
-            <div class="faq-a">نعم عند اتباع ممارسات الأمن: التشفير، التحكم بالوصول، مراقبة النشاط، وتحديث السياسات بشكل دوري.</div>
-          </div>
-        </section>
-      </main>
-
-      <aside>
-        <div class="card">
-          <h4>لماذا تتعلم الحوسبة السحابية؟</h4>
-          <ul class="meta">
-            <li>نمو مهني سريع</li>
-            <li>مطالب في سوق العمل</li>
-            <li>تطبيقات واسعة من الويب إلى الذكاء الاصطناعي</li>
-          </ul>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h4>إحصاءات سريعة</h4>
-          <div class="stat"><div>دورات متاحة</div><div style="font-weight:800">12</div></div>
-          <div class="stat" style="margin-top:8px"><div>مشاريع فعلية</div><div style="font-weight:800">5</div></div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h4>اتصل بنا</h4>
-          <p class="meta">support@cloudclass.example</p>
-        </div>
-      </aside>
+<div class="wrap">
+<header>
+  <div class="brand">
+    <div class="logo">CC</div>
+    <div>
+      <div style="font-weight:700">CloudClass</div>
+      <div style="font-size:13px;color:var(--muted)">تعرف على الحوسبة السحابية بخطوات عملية</div>
     </div>
-
-    <footer>
-      <div>© جميع الحقوق محفوظة — CloudClass 2025</div>
-      <div style="color:var(--muted)">صمم لمشاريع التعلّم والشرح</div>
-    </footer>
   </div>
 
-  <script>
-    // FAQ accordion
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-q').addEventListener('click', ()=>{
-        item.classList.toggle('open');
-      })
-    })
+  <nav>
+    <a href="#courses">الدورات</a>
+    <a href="#compare">مقارنة المزودين</a>
+    <a href="#glossary">مصطلحات</a>
+    <a href="#faq">أسئلة شائعة</a>
 
-    // small accessibility: keyboard toggle for FAQ
-    document.querySelectorAll('.faq-q').forEach(q => q.setAttribute('tabindex', 0));
-    document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('keypress', e=>{ if(e.key==='Enter') q.click(); }))
-  </script>
+    <div class="dropdown">
+      <button class="dropbtn">محاضرات ▾</button>
+      <div class="dropdown-content">
+        <a href="#git">20 أمر من أوامر Git</a>
+        <a href="#lecture2">المحاضرة الثانية</a>
+      </div>
+    </div>
+
+    <a class="cta" href="#signup">ابدأ الآن</a>
+  </nav>
+</header>
+
+<!-- محتوى Hero/Grid/Original Sections -->
+<section class="hero">
+  <div>
+    <h1>مقدمة احترافية في الحوسبة السحابية</h1>
+    <p>دورات مبسطة ومهنية تشرح الخدمات الأساسية: IaaS، PaaS، SaaS، الشبكات، الأمان، التخزين والحوكمة السحابية.</p>
+    <div class="features">
+      <div class="chip">مشاريع عملية</div>
+      <div class="chip">شروحات فيديو &amp; نصية</div>
+      <div class="chip">شهادات إتمام</div>
+    </div>
+
+    <div class="cards" style="margin-top:18px">
+      <div class="course">
+        <h4>أساسيات السحابة</h4>
+        <div class="meta">3 وحدات — مستوى مبتدئ</div>
+      </div>
+      <div class="course">
+        <h4>شبكات وVPC</h4>
+        <div class="meta">2 وحدات — مستوى وسط</div>
+      </div>
+      <div class="course">
+        <h4>أمان السحابة</h4>
+        <div class="meta">4 وحدات — مستوى متقدم</div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="signup-card" id="signup">
+    <h3>سجل لبداية سريعة</h3>
+    <p style="color:var(--muted);font-size:14px">اشترك لتصلك مواد مجانية ودليلك العملي.</p>
+    <input class="input" placeholder="البريد الإلكتروني" aria-label="email">
+    <a class="btn-primary" href="#">سجل الآن</a>
+  </aside>
+</section>
+
+<div class="grid">
+<main>
+  <!-- الأقسام الأصلية -->
+  <section class="card" id="courses">
+    <h3>مخطط الدورات</h3>
+    <p class="meta">سلسلة مرتبة من المبتدئ إلى المتقدم مع أمثلة عملية</p>
+    <div class="cards" style="margin-top:12px">
+      <div class="course"><h4>Foundations</h4><div class="meta">مفاهيم، نماذج نشر، حالات استخدام</div></div>
+      <div class="course"><h4>Compute &amp; Containers</h4><div class="meta">VMs، Docker، Kubernetes</div></div>
+      <div class="course"><h4>Storage &amp; Databases</h4><div class="meta">S3، Blob، قواعد البيانات المدارَة</div></div>
+    </div>
+    <h4 style="margin-top:16px">مشروع عملي مقترح</h4>
+    <p class="meta">بناء تطبيق ويب بسيط يستضيفه على S3/Blob مع API على الحاويات (Containers) وقاعدة بيانات مدارة.</p>
+  </section>
+
+  <section class="card" id="compare">
+    <h3>مقارنة سريعة بين مزودي السحابة</h3>
+    <table>
+      <thead><tr><th>المزود</th><th>خدمات رئيسية</th><th>حالة الاستخدام</th></tr></thead>
+      <tbody>
+        <tr><td>AWS</td><td>IaaS, Lambda, S3</td><td>شائع للتطبيقات واسعة النطاق</td></tr>
+        <tr><td>Azure</td><td>Active Directory, App Services</td><td>مناسب للمؤسسات المتكاملة مع مايكروسوفت</td></tr>
+        <tr><td>GCP</td><td>BigQuery, Compute Engine</td><td>قوي في تحليلات البيانات</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card" id="glossary">
+    <h3>مصطلحات مهمة</h3>
+    <div class="glossary">
+      <div class="term"><strong>IaaS</strong><div class="meta">البنية التحتية كخدمة — آلات افتراضية، شبكات.</div></div>
+      <div class="term"><strong>PaaS</strong><div class="meta">المنصة كخدمة — بيئة لتشغيل التطبيقات دون إدارة البنية.</div></div>
+      <div class="term"><strong>SaaS</strong><div class="meta">البرمجيات كخدمة — برامج جاهزة عبر الإنترنت.</div></div>
+      <div class="term"><strong>VPC</strong><div class="meta">شبكة افتراضية خاصة—عزل الشبكة داخل السحابة.</div></div>
+    </div>
+  </section>
+
+  <section class="card" id="faq">
+    <h3>أسئلة شائعة</h3>
+    <div class="faq-item"><div class="faq-q">ما الفرق بين IaaS وPaaS؟ <span>+</span></div><div class="faq-a">IaaS يوفر الخوادم والشبكات والبنية التحتية. PaaS يوفر بيئة تشغيل ويدير الطبقات الأدنى من البنية لك.</div></div>
+    <div class="faq-item"><div class="faq-q">هل السحابة آمنة؟ <span>+</span></div><div class="faq-a">نعم عند اتباع ممارسات الأمن: التشفير، التحكم بالوصول، مراقبة النشاط، وتحديث السياسات بشكل دوري.</div></div>
+  </section>
+
+  <!-- أقسام المحاضرات الجديدة -->
+  <section class="lecture" id="git">
+    <h2>20 أمر من أوامر Git</h2>
+    <ol>
+      <li>git init — إنشاء مستودع جديد</li>
+      <li>git clone — نسخ مستودع موجود</li>
+      <li>git add — إضافة الملفات للـ staging area</li>
+      <li>git commit — تسجيل تغييرات الملفات</li>
+      <li>git status — عرض حالة المستودع</li>
+      <li>git log — عرض سجل التعديلات</li>
+      <li>git branch — إدارة الفروع</li>
+      <li>git checkout — الانتقال بين الفروع</li>
+      <li>git merge — دمج الفروع</li>
+      <li>git pull — جلب وتحديث المستودع</li>
+      <li>git push — رفع التعديلات</li>
+      <li>git remote — إدارة المستودعات البعيدة</li>
+      <li>git fetch — جلب التغييرات بدون دمج</li>
+      <li>git reset — التراجع عن التعديلات</li>
+      <li>git revert — إنشاء commit لعكس التغييرات</li>
+      <li>git tag — إضافة علامة على commit</li>
+      <li>git stash — حفظ تغييرات مؤقتة</li>
+      <li>git diff — عرض الفروقات بين التعديلات</li>
+      <li>git rm — إزالة ملفات من المستودع</li>
+      <li>git config — إعدادات Git</li>
+    </ol>
+  </section>
+
+  <section class="lecture" id="lecture2">
+    <h2>المحاضرة الثانية</h2>
+    <p>هنا محتوى المحاضرة الثانية يمكن كتابته مباشرة.</p>
+  </section>
+</main>
+
+<aside>
+  <div class="card"><h4>لماذا تتعلم الحوسبة السحابية؟</h4>
+    <ul class="meta"><li>نمو مهني سريع</li><li>مطالب في سوق العمل</li><li>تطبيقات واسعة من الويب إلى الذكاء الاصطناعي</li></ul>
+  </div>
+  <div class="card" style="margin-top:12px"><h4>إحصاءات سريعة</h4>
+    <div class="stat"><div>دورات متاحة</div><div style="font-weight:800">12</div></div>
+    <div class="stat" style="margin-top:8px"><div>مشاريع فعلية</div><div style="font-weight:800">5</div></div>
+  </div>
+  <div class="card" style="margin-top:12px"><h4>اتصل بنا</h4><p class="meta">support@cloudclass.example</p></div>
+</aside>
+</div>
+
+<footer>
+  <div>© جميع الحقوق محفوظة — CloudClass 2025</div>
+  <div style="color:var(--muted)">صمم لمشاريع التعلّم والشرح</div>
+</footer>
+</div>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', ()=>{
+    item.classList.toggle('open');
+  })
+});
+document.querySelectorAll('.faq-q').forEach(q => q.setAttribute('tabindex', 0));
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('keypress', e=>{ if(e.key==='Enter') q.click(); }))
+</script>
 </body>
 </html>
